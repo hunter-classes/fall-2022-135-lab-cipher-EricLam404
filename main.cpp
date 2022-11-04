@@ -9,6 +9,6 @@ int main()
   std::cout << encryptCaesar("Way to Go!", 5) << "\n";  
   std::cout << decryptCaesar("Rovvy, Gybvn!", 10) << "\n";
   */
-  solve("o");
+  solve("xzZyY");
   return 0;
 }
