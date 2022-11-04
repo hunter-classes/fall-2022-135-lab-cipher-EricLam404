@@ -1,8 +1,8 @@
 main: main.o caesar.o decrypt.o solve.o
 	g++ -o main main.o caesar.o decrypt.o solve.o
 
-tests: tests.o caesar.o decrypt.o
-	g++ -o tests tests.o caesar.o decrypt.o
+tests: tests.o caesar.o decrypt.o solve.o
+	g++ -o tests tests.o caesar.o decrypt.o solve.o
 
 test-ascii.o: test-ascii.cpp 
 

@@ -14,8 +14,10 @@ std::vector<double> get_freq(std::string encrypted_string){
     double letter_freq = 1.0 / encrypted_string.length();
     for(int i = 0; i < encrypted_string.length();i++){
         char c = encrypted_string[i];
-        if (isupper(c)) c = tolower(c);
-        string_freq[(int) c - charShift]+= letter_freq;
+        if(isalpha(c)){
+            if (isupper(c)) c = tolower(c);
+            string_freq[(int) c - charShift] += letter_freq;
+        }
     }
     return string_freq;
 }
@@ -36,8 +38,15 @@ std::string solve(std::string encrypted_string){
     int index = 0;
     double dist = distance(freq, string_freq);
 
-    for(int i = 0; i < 26; i++){
-        std::cout << string_freq[i] << "\n";
+    for(int i = 1; i < 26; i++){
+        std::string temp_str = decryptCaesar(encrypted_string, i);
+        string_freq = get_freq(temp_str);
+        double temp_dist = distance(freq, string_freq);
+        if(temp_dist < dist){
+            index = i;
+            dist = temp_dist;
+        }
     }
-    return "";
+    std::cout << index << "\n"; 
+    return decryptCaesar(encrypted_string, index);
 }
